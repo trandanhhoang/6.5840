@@ -20,10 +20,15 @@ func main() {
 		os.Exit(1)
 	}
 
-	m := mr.MakeCoordinator(os.Args[1:], 10)
+	m := mr.MakeCoordinator(os.Args[1:], 3)
 	for m.Done() == false {
 		time.Sleep(time.Second)
 	}
 
 	time.Sleep(time.Second)
 }
+
+//1. notice if a worker hasn't completed its task
+// in a reasonable amount of time
+// (for this lab, use ten seconds)
+// , and give the same task to a different worker.

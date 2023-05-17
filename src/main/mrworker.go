@@ -17,7 +17,7 @@ import "fmt"
 import "log"
 
 func main() {
-	fmt.Println("Worker main")
+	fmt.Println("Worker")
 	if len(os.Args) != 2 {
 		fmt.Fprintf(os.Stderr, "Usage: mrworker xxx.so\n")
 		os.Exit(1)
@@ -27,6 +27,11 @@ func main() {
 
 	mr.Worker(mapf, reducef)
 }
+
+//1. ask the coordinator for a task
+//→ read the task's input from one or more files
+//→ execute the task→ write the task's output
+//to one or more files.
 
 // load the application Map and Reduce functions
 // from a plugin file, e.g. ../mrapps/wc.so
