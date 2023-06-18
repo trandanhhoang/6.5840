@@ -9,7 +9,11 @@ package main
 // Please do not change this file.
 //
 
-import "6.5840/mr"
+import (
+	"6.5840/mr"
+	"io/ioutil"
+	"log"
+)
 import "time"
 import "os"
 import "fmt"
@@ -19,6 +23,9 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Usage: mrcoordinator inputfiles...\n")
 		os.Exit(1)
 	}
+
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+	log.SetOutput(ioutil.Discard)
 
 	m := mr.MakeCoordinator(os.Args[1:], 3)
 	for m.Done() == false {

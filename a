@@ -1,0 +1,379 @@
+2023/05/19 00:40:44 coordinator.go:162: key: 0, status: Complete 
+2023/05/19 00:40:44 coordinator.go:164: ==================
+2023/05/19 00:40:45 coordinator.go:119: Worker done reduce job task  1
+2023/05/19 00:40:45 coordinator.go:160: === Map status ===
+2023/05/19 00:40:45 coordinator.go:162: key: 0, status: Complete 
+2023/05/19 00:40:45 coordinator.go:162: key: 1, status: Complete 
+2023/05/19 00:40:45 coordinator.go:162: key: 2, status: Processing 
+2023/05/19 00:40:45 coordinator.go:164: ==================
+2023/05/19 00:40:45 coordinator.go:119: Worker done reduce job task  2
+2023/05/19 00:40:45 coordinator.go:160: === Map status ===
+2023/05/19 00:40:45 coordinator.go:162: key: 0, status: Complete 
+2023/05/19 00:40:45 coordinator.go:162: key: 1, status: Complete 
+2023/05/19 00:40:45 coordinator.go:162: key: 2, status: Complete 
+2023/05/19 00:40:45 coordinator.go:164: ==================
+admin@LAP60783 main % ./test-mr.sh
+*** Cannot find timeout command; proceeding without timeouts.
+*** Starting crash test.
+2023/05/19 00:41:03 coordinator.go:168: === Map status ===
+2023/05/19 00:41:03 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:41:03 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:41:03 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:41:03 coordinator.go:170: key: ../pg-being_ernest.txt, status: Idle, mapTask: 0 
+2023/05/19 00:41:03 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:41:03 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:41:03 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:41:03 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:41:03 coordinator.go:172: ==================
+2023/05/19 00:41:04 coordinator.go:168: === Map status ===
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-being_ernest.txt, status: Idle, mapTask: 0 
+2023/05/19 00:41:04 coordinator.go:172: ==================
+2023/05/19 00:41:04 worker.go:192: isStatusMapPhaseDone false
+2023/05/19 00:41:04 coordinator.go:168: === Map status ===
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-being_ernest.txt, status: Idle, mapTask: 0 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Processing, mapTask: 5 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:41:04 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:41:04 coordinator.go:172: ==================
+2023/05/19 00:41:04 worker.go:316: reply.NameFile ../pg-metamorphosis.txt, reply.MapTask 5, reply.NumberReduceTask 3 
+2023/05/19 00:41:05 coordinator.go:108: Worker done job task  ../pg-metamorphosis.txt
+2023/05/19 00:41:05 coordinator.go:168: === Map status ===
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-being_ernest.txt, status: Idle, mapTask: 0 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:41:05 coordinator.go:172: ==================
+2023/05/19 00:41:05 worker.go:281: reply.IsNotify false
+2023/05/19 00:41:05 coordinator.go:168: === Map status ===
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-being_ernest.txt, status: Idle, mapTask: 0 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:41:05 coordinator.go:172: ==================
+2023/05/19 00:41:05 worker.go:192: isStatusMapPhaseDone false
+2023/05/19 00:41:05 coordinator.go:168: === Map status ===
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-being_ernest.txt, status: Idle, mapTask: 0 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-grimm.txt, status: Processing, mapTask: 3 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:41:05 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:41:05 coordinator.go:172: ==================
+2023/05/19 00:41:05 worker.go:316: reply.NameFile ../pg-grimm.txt, reply.MapTask 3, reply.NumberReduceTask 3 
+2023/05/19 00:41:13 coordinator.go:108: Worker done job task  ../pg-grimm.txt
+2023/05/19 00:41:13 coordinator.go:168: === Map status ===
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-being_ernest.txt, status: Idle, mapTask: 0 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-grimm.txt, status: Complete, mapTask: 3 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:41:13 coordinator.go:172: ==================
+2023/05/19 00:41:13 worker.go:281: reply.IsNotify false
+2023/05/19 00:41:13 coordinator.go:168: === Map status ===
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-grimm.txt, status: Complete, mapTask: 3 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-being_ernest.txt, status: Idle, mapTask: 0 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:41:13 coordinator.go:172: ==================
+2023/05/19 00:41:13 worker.go:192: isStatusMapPhaseDone false
+2023/05/19 00:41:13 coordinator.go:168: === Map status ===
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Processing, mapTask: 6 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-being_ernest.txt, status: Idle, mapTask: 0 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-grimm.txt, status: Complete, mapTask: 3 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:41:13 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:41:13 coordinator.go:172: ==================
+2023/05/19 00:41:13 worker.go:316: reply.NameFile ../pg-sherlock_holmes.txt, reply.MapTask 6, reply.NumberReduceTask 3 
+2023/05/19 00:41:23 coordinator.go:98: Worker not done job, reassign task name  ../pg-sherlock_holmes.txt
+2023/05/19 00:41:23 coordinator.go:168: === Map status ===
+2023/05/19 00:41:23 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:41:23 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:41:23 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:41:23 coordinator.go:170: key: ../pg-being_ernest.txt, status: Idle, mapTask: 0 
+2023/05/19 00:41:23 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:41:23 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:41:23 coordinator.go:170: key: ../pg-grimm.txt, status: Complete, mapTask: 3 
+2023/05/19 00:41:23 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:41:23 coordinator.go:172: ==================
+^C%                                               
+admin@LAP60783 main % ./test-mr.sh
+*** Cannot find timeout command; proceeding without timeouts.
+*** Starting crash test.
+2023/05/19 00:43:35 coordinator.go:168: === Map status ===
+2023/05/19 00:43:35 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:43:35 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:43:35 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:35 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:35 coordinator.go:170: key: ../pg-being_ernest.txt, status: Idle, mapTask: 0 
+2023/05/19 00:43:35 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:43:35 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:35 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:35 coordinator.go:172: ==================
+2023/05/19 00:43:36 coordinator.go:168: === Map status ===
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-being_ernest.txt, status: Idle, mapTask: 0 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:36 coordinator.go:172: ==================
+2023/05/19 00:43:36 worker.go:192: isStatusMapPhaseDone false
+2023/05/19 00:43:36 coordinator.go:168: === Map status ===
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:36 coordinator.go:170: key: ../pg-being_ernest.txt, status: Processing, mapTask: 0 
+2023/05/19 00:43:36 coordinator.go:172: ==================
+2023/05/19 00:43:36 worker.go:316: reply.NameFile ../pg-being_ernest.txt, reply.MapTask 0, reply.NumberReduceTask 3 
+2023/05/19 00:43:37 coordinator.go:108: Worker done job task  ../pg-being_ernest.txt
+2023/05/19 00:43:37 coordinator.go:168: === Map status ===
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:37 coordinator.go:172: ==================
+2023/05/19 00:43:37 worker.go:281: reply.IsNotify false
+2023/05/19 00:43:37 coordinator.go:168: === Map status ===
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Idle, mapTask: 4 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:37 coordinator.go:172: ==================
+2023/05/19 00:43:37 worker.go:192: isStatusMapPhaseDone false
+2023/05/19 00:43:37 coordinator.go:168: === Map status ===
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Processing, mapTask: 4 
+2023/05/19 00:43:37 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:43:37 coordinator.go:172: ==================
+2023/05/19 00:43:37 worker.go:316: reply.NameFile ../pg-huckleberry_finn.txt, reply.MapTask 4, reply.NumberReduceTask 3 
+2023/05/19 00:43:38 coordinator.go:108: Worker done job task  ../pg-huckleberry_finn.txt
+2023/05/19 00:43:38 coordinator.go:168: === Map status ===
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:38 coordinator.go:172: ==================
+2023/05/19 00:43:38 worker.go:281: reply.IsNotify false
+2023/05/19 00:43:38 coordinator.go:168: === Map status ===
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Idle, mapTask: 1 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:38 coordinator.go:172: ==================
+2023/05/19 00:43:38 worker.go:192: isStatusMapPhaseDone false
+2023/05/19 00:43:38 coordinator.go:168: === Map status ===
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Processing, mapTask: 1 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:38 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:43:38 coordinator.go:172: ==================
+2023/05/19 00:43:38 worker.go:316: reply.NameFile ../pg-dorian_gray.txt, reply.MapTask 1, reply.NumberReduceTask 3 
+2023/05/19 00:43:39 coordinator.go:108: Worker done job task  ../pg-dorian_gray.txt
+2023/05/19 00:43:39 coordinator.go:168: === Map status ===
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:39 coordinator.go:172: ==================
+2023/05/19 00:43:39 worker.go:281: reply.IsNotify false
+2023/05/19 00:43:39 coordinator.go:168: === Map status ===
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Idle, mapTask: 5 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:39 coordinator.go:172: ==================
+2023/05/19 00:43:39 worker.go:192: isStatusMapPhaseDone false
+2023/05/19 00:43:39 coordinator.go:168: === Map status ===
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Processing, mapTask: 5 
+2023/05/19 00:43:39 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:39 coordinator.go:172: ==================
+2023/05/19 00:43:39 worker.go:316: reply.NameFile ../pg-metamorphosis.txt, reply.MapTask 5, reply.NumberReduceTask 3 
+2023/05/19 00:43:40 coordinator.go:108: Worker done job task  ../pg-metamorphosis.txt
+2023/05/19 00:43:40 coordinator.go:168: === Map status ===
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:40 coordinator.go:172: ==================
+2023/05/19 00:43:40 worker.go:281: reply.IsNotify false
+2023/05/19 00:43:40 coordinator.go:168: === Map status ===
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Idle, mapTask: 7 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:40 coordinator.go:172: ==================
+2023/05/19 00:43:40 worker.go:192: isStatusMapPhaseDone false
+2023/05/19 00:43:40 coordinator.go:168: === Map status ===
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Processing, mapTask: 7 
+2023/05/19 00:43:40 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:40 coordinator.go:172: ==================
+2023/05/19 00:43:40 worker.go:316: reply.NameFile ../pg-tom_sawyer.txt, reply.MapTask 7, reply.NumberReduceTask 3 
+2023/05/19 00:43:41 coordinator.go:108: Worker done job task  ../pg-tom_sawyer.txt
+2023/05/19 00:43:41 coordinator.go:168: === Map status ===
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Complete, mapTask: 7 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:41 coordinator.go:172: ==================
+2023/05/19 00:43:41 worker.go:281: reply.IsNotify false
+2023/05/19 00:43:41 coordinator.go:168: === Map status ===
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Complete, mapTask: 7 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-frankenstein.txt, status: Idle, mapTask: 2 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:41 coordinator.go:172: ==================
+2023/05/19 00:43:41 worker.go:192: isStatusMapPhaseDone false
+2023/05/19 00:43:41 coordinator.go:168: === Map status ===
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Complete, mapTask: 7 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-frankenstein.txt, status: Processing, mapTask: 2 
+2023/05/19 00:43:41 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:41 coordinator.go:172: ==================
+2023/05/19 00:43:41 worker.go:316: reply.NameFile ../pg-frankenstein.txt, reply.MapTask 2, reply.NumberReduceTask 3 
+2023/05/19 00:43:42 coordinator.go:108: Worker done job task  ../pg-frankenstein.txt
+2023/05/19 00:43:42 coordinator.go:168: === Map status ===
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Complete, mapTask: 7 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-frankenstein.txt, status: Complete, mapTask: 2 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:42 coordinator.go:172: ==================
+2023/05/19 00:43:42 worker.go:281: reply.IsNotify false
+2023/05/19 00:43:42 coordinator.go:168: === Map status ===
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-frankenstein.txt, status: Complete, mapTask: 2 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Complete, mapTask: 7 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:42 coordinator.go:172: ==================
+2023/05/19 00:43:42 worker.go:192: isStatusMapPhaseDone false
+2023/05/19 00:43:42 coordinator.go:168: === Map status ===
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Processing, mapTask: 6 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Complete, mapTask: 7 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-frankenstein.txt, status: Complete, mapTask: 2 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:42 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:42 coordinator.go:172: ==================
+2023/05/19 00:43:42 worker.go:316: reply.NameFile ../pg-sherlock_holmes.txt, reply.MapTask 6, reply.NumberReduceTask 3 
+2023/05/19 00:43:52 coordinator.go:98: Worker not done job, reassign task name  ../pg-sherlock_holmes.txt
+2023/05/19 00:43:52 coordinator.go:168: === Map status ===
+2023/05/19 00:43:52 coordinator.go:170: key: ../pg-metamorphosis.txt, status: Complete, mapTask: 5 
+2023/05/19 00:43:52 coordinator.go:170: key: ../pg-sherlock_holmes.txt, status: Idle, mapTask: 6 
+2023/05/19 00:43:52 coordinator.go:170: key: ../pg-tom_sawyer.txt, status: Complete, mapTask: 7 
+2023/05/19 00:43:52 coordinator.go:170: key: ../pg-being_ernest.txt, status: Complete, mapTask: 0 
+2023/05/19 00:43:52 coordinator.go:170: key: ../pg-dorian_gray.txt, status: Complete, mapTask: 1 
+2023/05/19 00:43:52 coordinator.go:170: key: ../pg-frankenstein.txt, status: Complete, mapTask: 2 
+2023/05/19 00:43:52 coordinator.go:170: key: ../pg-grimm.txt, status: Idle, mapTask: 3 
+2023/05/19 00:43:52 coordinator.go:170: key: ../pg-huckleberry_finn.txt, status: Complete, mapTask: 4 
+2023/05/19 00:43:52 coordinator.go:172: ==================

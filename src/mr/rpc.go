@@ -7,7 +7,6 @@ package mr
 //
 
 import (
-	"fmt"
 	"os"
 )
 import "strconv"
@@ -27,19 +26,54 @@ type ExampleReply struct {
 
 // Add your RPC definitions here.
 
-type FileNotDoneYetArgs struct {
-	Id int
-}
+type FileNotDoneYetArgs struct{}
 
 type FileNotDoneYetReply struct {
-	Name string
+	NameFile string
+	MapTask  int
+	NReduce  int
+}
+
+type GetReduceIntermediaKeyArgs struct{}
+
+type GetReduceIntermediaKeyReply struct {
+	NumberOfMapPhase    int
+	ReduceIntermediaKey int
 }
 
 type GetStatusMasterArgs struct {
 }
 
 type GetStatusMasterReply struct {
-	isDone bool
+	IsDone bool
+}
+
+type NotifyDoneJobArgs struct {
+	NameFile string
+}
+
+type NotifyDoneJobReply struct {
+	IsNotify bool
+}
+
+type NotifyDoneReduceJobArgs struct {
+	IntermediaKey int
+}
+
+type NotifyDoneReduceJobReply struct {
+	IsNotify bool
+}
+
+//type AssignReduceTaskArgs struct {
+//}
+//
+//type AssignReduceTaskReply struct {
+//}
+
+type StatusOfTaskArgs struct {
+}
+
+type StatusOfTaskReply struct {
 }
 
 // Cook up a unique-ish UNIX-domain socket name
@@ -49,13 +83,6 @@ type GetStatusMasterReply struct {
 func coordinatorSock() string {
 	s := "/var/tmp/5840-mr-"
 	s += strconv.Itoa(os.Getuid())
-	fmt.Println(s)
-	return s
-}
-
-func workerSock(idWorker int) string {
-	s := "/var/tmp/5840-mr-worker-"
-	s += strconv.Itoa(idWorker)
-	fmt.Println(s)
+	//fmt.Println(s)
 	return s
 }
