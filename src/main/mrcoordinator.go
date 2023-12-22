@@ -11,7 +11,7 @@ package main
 
 import (
 	"6.5840/mr"
-	"io/ioutil"
+// 	"io/ioutil"
 	"log"
 )
 import "time"
@@ -25,7 +25,7 @@ func main() {
 	}
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
-	log.SetOutput(ioutil.Discard)
+// 	log.SetOutput(ioutil.Discard)
 
 	m := mr.MakeCoordinator(os.Args[1:], 3)
 	for m.Done() == false {

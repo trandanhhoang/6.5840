@@ -18,6 +18,11 @@ package raft
 //
 
 import (
+	//"fmt"
+	"log"
+
+	// "fmt"
+	// "log"
 	//	"bytes"
 	"math/rand"
 	"sync"
@@ -50,6 +55,14 @@ type ApplyMsg struct {
 	SnapshotIndex int
 }
 
+type State string
+
+const(
+Follower State = "follower"
+Candidate State = "candidate"
+Leader State = "leader"
+)
+
 // A Go object implementing a single Raft peer.
 type Raft struct {
 	mu        sync.Mutex          // Lock to protect shared access to this peer's state
@@ -58,10 +71,19 @@ type Raft struct {
 	me        int                 // this peer's index into peers[]
 	dead      int32               // set by Kill()
 
+	state State
+
 	// Your data here (2A, 2B, 2C).
 	// Look at the paper's Figure 2 for a description of what
 	// state a Raft server must maintain.
+	currentTerm int
+	votedFor int
+	log []LogEntry
+}
 
+type LogEntry struct {
+	command string
+	term int
 }
 
 // return currentTerm and whether this server
@@ -70,7 +92,7 @@ func (rf *Raft) GetState() (int, bool) {
 
 	var term int
 	var isleader bool
-	// Your code here (2A).
+	// Your code here (2A) // todo don't to implmenent this
 	return term, isleader
 }
 
@@ -128,17 +150,45 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 // field names must start with capital letters!
 type RequestVoteArgs struct {
 	// Your data here (2A, 2B).
+	//candidate’s term
+	term int
+	//candidate requesting vote
+	candidateId int
+	//index of candidate’s last log entry (§5.4)
+	lastLogIndex int
+	//term of candidate’s last log entry (§5.4)
+	lastLogTerm int
 }
 
 // example RequestVote RPC reply structure.
 // field names must start with capital letters!
 type RequestVoteReply struct {
 	// Your data here (2A).
+	//currentTerm, for candidate to update itself
+	term int
+	//true means candidate received vote
+	voteGranted bool
 }
 
 // example RequestVote RPC handler.
 func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	// Your code here (2A, 2B).
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	Debug(dVote, "S%d receive vote request from S%d", rf.me, args.candidateId)
+	reply.term = rf.currentTerm
+	//Reply false if term < currentTerm (§5.1) -> too weak to be leader
+	if args.term < rf.currentTerm{
+		reply.voteGranted = false
+		return
+	}else{
+	// 2. If votedFor is null or candidateId, and candidate’s log is
+	// at least as up-to-date as receiver’s log, grant vote (§5.2, §5.4)
+		if (rf.votedFor == -1 || rf.votedFor == args.candidateId) && args.lastLogIndex >= len(rf.log){
+			reply.voteGranted = true
+		}
+	}
+	return
 }
 
 // example code to send a RequestVote RPC to a server.
@@ -209,6 +259,7 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 func (rf *Raft) Kill() {
 	atomic.StoreInt32(&rf.dead, 1)
 	// Your code here, if desired.
+	Debug(dError, "S%d killed", rf.me)
 }
 
 func (rf *Raft) killed() bool {
@@ -230,6 +281,67 @@ func (rf *Raft) ticker() {
 	}
 }
 
+func (rf * Raft) AttemptElection(){
+	rf.mu.Lock()
+	rf.state = Candidate
+	rf.currentTerm++
+	rf.votedFor = rf.me
+	rf.mu.Unlock()
+
+	localTerm := rf.currentTerm
+	//
+	count := 1
+	finish := 0
+	cond := sync.NewCond(&rf.mu)
+	for anotherNode, _ := range rf.peers {
+		if anotherNode == rf.me {
+			continue
+		}
+
+		go func(atomicNode int) {
+			vote := rf.requestVote(atomicNode,localTerm)
+			if !vote{
+				return
+			}
+			rf.mu.Lock()
+			defer rf.mu.Unlock()
+			count++
+			finish++
+			cond.Broadcast()
+		}(anotherNode)
+
+		mu.Lock()
+		for count < (len(rf.peers) - 1)/2 && finish!=len(rf.peers)-1{
+			cond.Wait()
+		}
+		if count >= (len(rf.peers) - 1)/2 {
+			Debug(dLeader, "S%d become leader", rf.me)
+		}else{
+			Debug(dLeader, "S%d not become leader", rf.me)
+		}
+		mu.Unlock()
+
+	}
+}
+
+func (rf * Raft) requestVote(atomicNode int, localTerm int) bool{
+	args := RequestVoteArgs{
+		localTerm, // because it can be updated if it act as a receiver request.
+		rf.me,
+		len(rf.log) - 1,
+		rf.log[len(rf.log)-1].term,
+	}
+	reply := RequestVoteReply{}
+	ok := rf.sendRequestVote(atomicNode, &args, &reply)
+	if !ok {
+		log.Printf("call failed!\n")
+		return false
+	}
+	// reply.Y should be 100.
+	log.Printf("reply.IsNotify with term %v and vote %v\n", reply.term, reply.voteGranted)
+	return reply.voteGranted
+}
+
 // the service or tester wants to create a Raft server. the ports
 // of all the Raft servers (including this one) are in peers[]. this
 // server's port is peers[me]. all the servers' peers[] arrays
@@ -239,12 +351,19 @@ func (rf *Raft) ticker() {
 // tester or service expects Raft to send ApplyMsg messages.
 // Make() must return quickly, so it should start goroutines
 // for any long-running work.
+
 func Make(peers []*labrpc.ClientEnd, me int,
 	persister *Persister, applyCh chan ApplyMsg) *Raft {
+
+	Debug(dTimer, "S%d here peers%+v, persi %+v",me,persister)
+
 	rf := &Raft{}
 	rf.peers = peers
 	rf.persister = persister
 	rf.me = me
+	// todo - check if this is correct
+	rf.votedFor = -1
+
 
 	// Your initialization code here (2A, 2B, 2C).
 
@@ -257,3 +376,47 @@ func Make(peers []*labrpc.ClientEnd, me int,
 
 	return rf
 }
+
+//term leader’s term
+//leaderId so follower can redirect clients
+//prevLogIndex index of log entry immediately preceding new ones
+//prevLogTerm term of prevLogIndex entry
+//entries[] log entries to store (empty for heartbeat; may send more than one for efficiency)
+//leaderCommit leader’s commitIndex
+type AppendEntriesArgs struct {
+	term int
+	leaderId int
+	prevLogIndex int
+	prevLogTerm int
+	entries []LogEntry
+	leaderCommit int
+}
+type AppendEntriesReply struct {
+	//term currentTerm, for leader to update itself
+	//success true if follower contained entry matching prevLogIndex and prevLogTerm
+	term int
+	success bool
+}
+
+func (rf *Raft) sendAppendEntries(server int, args *AppendEntriesArgs, reply *AppendEntriesReply) bool {
+	ok := rf.peers[server].Call("Raft.AppendEntries", args, reply)
+	return ok
+}
+
+func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply) {
+	// Your code here (2A, 2B).
+	return
+}
+
+//args := AppendEntriesArgs{
+//	term:         rf.currentTerm,
+//	leaderId:    rf.me,
+//	prevLogIndex: 0,
+//	prevLogTerm:  0,
+//	entries:      nil,
+//	leaderCommit: 0,
+//}
+//reply := AppendEntriesReply{
+//	term:    0,
+//	success: false,
+//}
