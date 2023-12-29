@@ -27,6 +27,12 @@ func clone(orig []byte) []byte {
 	return x
 }
 
+func (ps *Persister) SaveRaftState(state []byte) {
+	ps.mu.Lock()
+	defer ps.mu.Unlock()
+	ps.raftstate = state
+}
+
 func (ps *Persister) Copy() *Persister {
 	ps.mu.Lock()
 	defer ps.mu.Unlock()

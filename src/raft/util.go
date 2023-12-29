@@ -20,6 +20,7 @@ var debugStart time.Time
 var debugVerbosity int
 
 type logTopic string
+
 const (
 	dClient  logTopic = "CLNT"
 	dCommit  logTopic = "CMIT"
@@ -48,10 +49,10 @@ func init() {
 
 func Debug(topic logTopic, format string, a ...interface{}) {
 	//if debug >= 1 {
-		time := time.Since(debugStart).Microseconds()
-		time /= 100
-		prefix := fmt.Sprintf("%06d %v ", time, string(topic))
-		format = prefix + format
-		log.Printf(format, a...)
+	time := time.Since(debugStart).Microseconds()
+	time /= 100
+	prefix := fmt.Sprintf("%06d %v ", time, string(topic))
+	format = prefix + format
+	log.Printf(format, a...)
 	//}
 }
