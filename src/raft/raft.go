@@ -171,7 +171,6 @@ type RequestVoteReply struct {
 // example RequestVote RPC handler.
 func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	// Your code here (2A, 2B).
-
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	// lock for this line
@@ -184,14 +183,13 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		return
 	}
 
-	if args.Term > rf.currentTerm{
+	if args.Term > rf.currentTerm {
 		rf.convertToFollower(args.Term)
 	}
 
 	// 2. If votedFor is null or CandidateId, and candidate’s log is
 	// at least as up-to-date as receiver’s log, grant vote (§5.2, §5.4)
 	//&& args.lastLogIndex >= len(rf.log)
-	reply.Term = rf.currentTerm
 	if rf.votedFor == -1 || rf.votedFor == args.CandidateId {
 		reply.VoteGranted = true
 		Debug(dVote, "S%d grant leader for S%d", rf.me, args.CandidateId)
@@ -200,7 +198,6 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	Debug(dVote, "S%d WHAT THE HELL S%d", rf.me, args.CandidateId)
 	return
 }
-
 
 // example code to send a RequestVote RPC to a server.
 // server is the index of the target server in rf.peers[].
@@ -277,14 +274,19 @@ func (rf *Raft) killed() bool {
 }
 
 func (rf *Raft) ticker() {
-	for rf.killed() == false{
+	for rf.killed() == false {
 		// Your code here (2A)
 		// Check if a leader election should be started.
 		ms := 360 + (rand.Int63() % 240)
 		startTime := time.Now()
 		// does we heard something, if yet, ignore send
 		time.Sleep(time.Duration(ms) * time.Millisecond)
-		if rf.lastReceive.Before(startTime) && rf.state != Leader {// does we heard something, if yet, ignore send
+		rf.mu.Lock()
+		lastReceive := rf.lastReceive
+		state := rf.state
+		rf.mu.Unlock()
+
+		if lastReceive.Before(startTime) && state != Leader { // does we heard something, if yet, ignore send
 			rf.attemptElection()
 		}
 		// pause for a random amount of time between 50 and 350
@@ -334,7 +336,7 @@ func (rf *Raft) attemptElection() {
 			count++
 
 			if count >= len(rf.peers)/2+1 {
-				Debug(dLeader, "S%d become leader %d %d", rf.me, localTerm , reply.Term)
+				Debug(dLeader, "S%d become leader %d %d", rf.me, localTerm, reply.Term)
 				rf.convertToLeader()
 				go rf.pingFollower()
 				done = true
@@ -402,10 +404,17 @@ func Make(peers []*labrpc.ClientEnd, me int,
 }
 
 func (rf *Raft) pingFollower() {
-	for rf.state == Leader {
+
+	for rf.killed() == false {
+
 		ms := 100 + (rand.Int63() % 20)
 		time.Sleep(time.Duration(ms) * time.Millisecond)
-
+		rf.mu.Lock()
+		state := rf.state
+		rf.mu.Unlock()
+		if state != Leader {
+			return
+		}
 		for anotherNode, _ := range rf.peers {
 			if anotherNode == rf.me {
 				continue
@@ -414,6 +423,8 @@ func (rf *Raft) pingFollower() {
 				rf.callAppendEntries(atomicNode)
 			}(anotherNode)
 		}
+
+
 	}
 }
 
@@ -436,7 +447,7 @@ func (rf *Raft) callAppendEntries(atomicNode int) {
 	if !ok {
 		return
 	}
-	if reply.Success == false{
+	if reply.Success == false {
 		Debug(dTimer, "S%d my term:%d ->follower with new term:%d", rf.me, rf.currentTerm, reply.Term)
 		rf.convertToFollower(reply.Term)
 	}
